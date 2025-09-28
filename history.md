@@ -4,6 +4,7 @@
     * API
         * `lstg.Execute()` got un-defined by default. A new flag `DEFINE_EXECUTE_API_FUNCTION` got added to define it
         * NEW: `lstg.Window:setCursorType()`
+        * NEW: `lstg.GetBranchName()` returns the name of the branch.
     * Windowing
         * Fixed borderless for good (hopefully)
 
