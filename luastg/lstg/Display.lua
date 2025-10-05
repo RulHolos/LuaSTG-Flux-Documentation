@@ -269,6 +269,7 @@ end
 ---@see lstg.Display.getPrimary
 ---@param window lstg.Window
 ---@return lstg.Display monitor
+---@diagnostic disable-next-line: unused-local, redundant-parameter
 function M.getNearestFromWindow(window)
 end
 

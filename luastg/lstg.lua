@@ -1,8 +1,7 @@
 ---@diagnostic disable: missing-return, duplicate-set-field
 
 --------------------------------------------------------------------------------
---- LuaSTG Sub
---- 璀境石
+--- LuaSTG Sub and Flux API
 --------------------------------------------------------------------------------
 
 ---@class lstg
@@ -12,60 +11,55 @@ local M = {}
 lstg = M
 
 --------------------------------------------------------------------------------
---- 命令行参数  
---- Command line arguments  
+--- Command Line Arguments  
 
--- 可用的外部命令行参数  
--- 1、--log-window      启用引擎日志窗口  
--- 2、--log-window-wait 关闭程序后不立即关闭引擎日志窗口  
--- Available external command line arguments  
--- 1、--log-window      Enable engine log window  
--- 2、--log-window-wait Do not close the engine log window immediately after closing the program  
-
---- 命令行参数  
+--- Available external command line arguments  
+--- 1. --log-window      Enable engine log window  
+--- 2. --log-window-wait Do not close the engine log window immediately after closing the program  
 --- Command line arguments  
 ---@type string[]
 M.args = {}
 
 --------------------------------------------------------------------------------
---- 游戏循环流程
+--- Engine startup sequence
 
--- 1. 初始化游戏框架，启动 Lua 虚拟机
--- 2. 加载 launch 初始化脚本（可选）
--- 3. 加载游戏引擎
--- 4. 按照 core.lua -> main.lua -> src/main.lua 的顺序搜索入口点文件脚本并加载
---    只会加载第一个找到的脚本，比如同时存在 main.lua、src/main.lua，只加载 main.lua
--- 5. 执行 GameInit，开始游戏循环
--- 6. 按照 FrameFunc -> RenderFunc -> FrameFunc -> ... 的顺序进行游戏循环
--- 7. 结束游戏循环，执行 GameExit
--- 8. 卸载所有资源，关闭游戏引擎，关闭 Lua 虚拟机，关闭游戏框架
+-- 1. Initialize the game framework and start the lua vm
+-- 2a. Load the launch initialization script (optional)
+-- 2b. Load the config.json initialization file (optional)
+-- 3. Load the game engine
+-- 4. Search for and load the entry point script in the order: core.lua -> main.lua -> src/main.lua
+-- Only the first script found will be loaded.
+-- 5. Execute GameInit function to start the game loop.
+-- 6. Execute the game loop in the sequence FrameFunc -> RenderFunc -> FrameFunc -> ...
+-- 7. Exit the game loop and execute GameExit function (optional)
+-- 8. Unload all resources, shut down the game engine, close the lua vm and terminate the game framework.
 
 --------------------------------------------------------------------------------
---- 全局回调函数（定义在全局，供引擎定期调用）
+--- Global callback functions (defined in the global scope for invoking by the engine)
 
----游戏循环开始前调用一次
+---Called once before the game loop begins.
 function GameInit()
 end
 
----游戏循环中每帧调用一次，在RenderFunc之前
----@return boolean @返回true时结束游戏循环
+---Called once per frame in the game loop, before RenderFunc
+---@return boolean @Returns true to exit the game loop
 function FrameFunc()
 	return false
 end
 
----游戏循环中每帧调用一次，在FrameFunc之后
+---Called once per frame in the game loop, after FrameFunc.
 function RenderFunc()
 end
 
----游戏循环结束后，退出前调用一次
+---After the game loop ends, call once before exiting.
 function GameExit()
 end
 
----窗口失去焦点的时候被调用
+---Called when the window loses focus
 function FocusLoseFunc()
 end
 
----窗口获得焦点的时候被调用
+---Called when the window gains focus
 function FocusGainFunc()
 end
 
@@ -318,6 +312,7 @@ M.StopWatch = StopWatch.StopWatch
 
 local Color = require("legacy.Color")
 
+---@diagnostic disable-next-line: assign-type-mismatch
 M.Color = Color.Color
 
 --------------------------------------------------------------------------------

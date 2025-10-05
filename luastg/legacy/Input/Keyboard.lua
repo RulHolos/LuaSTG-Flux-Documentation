@@ -1,17 +1,15 @@
 --------------------------------------------------------------------------------
---- LuaSTG Sub 键盘输入
---- LuaSTG Sub keyboard input
+--- LuaSTG Flux 键盘输入
+--- LuaSTG Flux keyboard input
 --------------------------------------------------------------------------------
 
 ---@diagnostic disable: missing-return
 
---- [LuaSTG Sub v0.15.6 新增]  
+--- [LuaSTG Flux v0.15.6 新增]  
 ---@class lstg.Input.Keyboard
 local M = {}
 
 --------------------------------------------------------------------------------
---- 按键码常量
---- 注意：这些常量的值和内部实现有关，请勿直接使用数字值，应该通过常量访问
 --- Key code constants
 --- Note: The values of these constants are related to the internal implementation,
 --- DO NOT use numeric values directly, they should be accessed through constants
@@ -157,24 +155,24 @@ M.RightControl = 163
 M.LeftAlt = 164
 M.RightAlt = 165
 
---M.BrowserBack = 166
---M.BrowserForward = 167
---M.BrowserRefresh = 168
---M.BrowserStop = 169
---M.BrowserSearch = 170
---M.BrowserFavorites = 171
---M.BrowserHome = 172
---M.VolumeMute = 173
---M.VolumeDown = 174
---M.VolumeUp = 175
---M.MediaNextTrack = 176
---M.MediaPreviousTrack = 177
---M.MediaStop = 178
---M.MediaPlayPause = 179
---M.LaunchMail = 180
---M.SelectMedia = 181
---M.LaunchApplication1 = 182
---M.LaunchApplication2 = 183
+M.BrowserBack = 166
+M.BrowserForward = 167
+M.BrowserRefresh = 168
+M.BrowserStop = 169
+M.BrowserSearch = 170
+M.BrowserFavorites = 171
+M.BrowserHome = 172
+M.VolumeMute = 173
+M.VolumeDown = 174
+M.VolumeUp = 175
+M.MediaNextTrack = 176
+M.MediaPreviousTrack = 177
+M.MediaStop = 178
+M.MediaPlayPause = 179
+M.LaunchMail = 180
+M.SelectMedia = 181
+M.LaunchApplication1 = 182
+M.LaunchApplication2 = 183
 
 --- ;:
 M.Semicolon = 186
