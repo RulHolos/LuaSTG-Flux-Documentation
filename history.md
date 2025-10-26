@@ -1,5 +1,14 @@
 # LuaSTG-Flux Changelog history
 
+* LuaSTG-Flux v0.1.2 (pre-release)
+    * Multi World API
+        * CHANGE: `SetWorldFlag()` now sets the set world as context for all objects created after setting it.
+    * SQLite3
+        * NEW: Addition of sqlite3 support as a module you can load.
+        * NEW: `sqlite3.open()` Create or open a database at the specified path.
+        * NEW: `sqlite3.exec()` Execute a sql request on the database.
+        * NEW: `sqlite3.close()` Closes the current database.
+
 * LuaSTG-Flux v0.1.1 (pre-release)
     * API
         * `lstg.Execute()` got un-defined by default. A new flag `DEFINE_EXECUTE_API_FUNCTION` got added to define it
