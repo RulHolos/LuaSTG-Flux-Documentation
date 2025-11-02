@@ -161,10 +161,10 @@ end
 ---   * Windows 7/8/8.1 先尝试进入传统独占全屏，若失败则使用全屏无边框窗口  
 ---@param width number
 ---@param height number
----@param windowed boolean
+---@param window_mode "windowed"|"borderless"|"fullscreen"
 ---@param vsync boolean
 ---@return boolean
-function M.ChangeVideoMode(width, height, windowed, vsync)
+function M.ChangeVideoMode(width, height, window_mode, vsync)
 end
 
 --------------------------------------------------------------------------------

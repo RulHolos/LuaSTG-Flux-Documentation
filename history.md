@@ -1,5 +1,16 @@
 # LuaSTG-Flux Changelog history
 
+* LuaSTG-Flux v0.1.3 (pre-release)
+    * API
+        * NEW: `lstg.GetBound()` Returns 4 numbers representing the current world bounds in order: Left, Right, Bottom, Top.
+    * Multi World API
+        * CHANGE: The API now uses real bitmasks instead of tables. Increasing the limit of active worlds to 64 instead of 4.
+        * DEPRECATED: `lstg.IsInWorld(a, b)` got deprecated in favor of `lstg.IsSameWorld(a, b)`. Can take `object` or `object.world`
+        * NEW: `lstg.SetActiveWorlds(mask)` takes a bit mask to restrict or allow usage of worlds. Default is 0xFFFFFFFF (all worlds).
+        * Default world is now 0x0001 (1).
+    * Package
+        * New example package script based on LuaSTG-Sub.
+
 * LuaSTG-Flux v0.1.2 (pre-release)
     * Multi World API
         * CHANGE: `SetWorldFlag()` now sets the set world as context for all objects created after setting it.

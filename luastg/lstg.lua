@@ -164,9 +164,8 @@ M.GetCurrentSuperPause = GameObjectManager.GetCurrentSuperPause
 
 M.SetWorldFlag = GameObjectManager.SetWorldFlag
 M.GetWorldFlag = GameObjectManager.GetWorldFlag
-M.IsInWorld = GameObjectManager.IsInWorld
 M.IsSameWorld = GameObjectManager.IsSameWorld
-M.ActiveWorlds = GameObjectManager.ActiveWorlds
+M.SetActiveWorlds = GameObjectManager.SetActiveWorlds
 
 --------------------------------------------------------------------------------
 

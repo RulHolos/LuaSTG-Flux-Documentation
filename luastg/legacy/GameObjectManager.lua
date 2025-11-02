@@ -312,14 +312,7 @@ end
 function M.GetWorldFlag()
 end
 
---- 检查两个 world 掩码是否存在交叠的部分
----@param maskA number
----@param maskB number
----@return boolean
-function M.IsInWorld(maskA, maskB)
-end
-
---- 根据 ActiveWorlds 设置的多 world 掩码，判断两个对象是否在同一个 world 内
+--- 根据 SetActiveWorlds 设置的多 world 掩码，判断两个对象是否在同一个 world 内
 ---@param maskA number
 ---@param maskB number
 ---@return boolean
