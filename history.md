@@ -1,5 +1,10 @@
 # LuaSTG-Flux Changelog history
 
+* LuaSTG-Flux v0.1.4 (pre-release)
+    * API
+        * NEW: `lstg.CreateResourcePool(name)` Creates a resource pool for loading resource. Can be used in `lstg.SetResourceStatus()` and `lstg.RemoveResource()`.
+        * NEW: `lstg.RemoveResourcePool(name)` Deletes a resource pool and frees all the resources created in its scope.
+
 * LuaSTG-Flux v0.1.3 (pre-release)
     * API
         * NEW: `lstg.GetBound()` Returns 4 numbers representing the current world bounds in order: Left, Right, Bottom, Top.
