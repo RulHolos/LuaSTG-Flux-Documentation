@@ -4,6 +4,11 @@
     * API
         * NEW: `lstg.CreateResourcePool(name)` Creates a resource pool for loading resource. Can be used in `lstg.SetResourceStatus()` and `lstg.RemoveResource()`.
         * NEW: `lstg.RemoveResourcePool(name)` Deletes a resource pool and frees all the resources created in its scope.
+    * Fixes
+        * Fixed an memory leak issue related to engine shutdown sequence.
+    * Discord RPC
+        * Newly added Discord Rich Presence support with lua bindings.
+        * Please look into the documentation for examples and api documentation.
 
 * LuaSTG-Flux v0.1.3 (pre-release)
     * API

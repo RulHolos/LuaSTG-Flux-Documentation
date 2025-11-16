@@ -111,6 +111,7 @@ M.FindFiles = Framework.FindFiles
 --------------------------------------------------------------------------------
 
 require("legacy.Archive")
+require("legacy.DiscordRPC")
 local FileManager = require("legacy.FileManager")
 
 M.FileManager = FileManager
