@@ -1,14 +1,27 @@
 # LuaSTG-Flux Changelog history
 
-* LuaSTG-Flux v0.1.4 (pre-release)
+* LuaSTG-Flux v0.2.0 (Initial Release)
     * API
         * NEW: `lstg.CreateResourcePool(name)` Creates a resource pool for loading resource. Can be used in `lstg.SetResourceStatus()` and `lstg.RemoveResource()`.
         * NEW: `lstg.RemoveResourcePool(name)` Deletes a resource pool and frees all the resources created in its scope.
+        * NEW: `lstg.Window.SetBorderless()` Sets the screen to borderless mode. Use `lstg.Window.SetWindowed()` to go back out of it.
     * Fixes
         * Fixed an memory leak issue related to engine shutdown sequence.
+        * Translated more console logs.
+    * Changes
+        * `lstg.AfterFrame()` and `lstg.ObjFrame()` are now world-mask aware.
+    * Removed
+        * `EventFunc` will not be called anymore by the engine.
     * Discord RPC
         * Newly added Discord Rich Presence support with lua bindings.
-        * Please look into the documentation for examples and api documentation.
+        * There is no default app id. Please create it yourself in the discord developer portal.
+        * NEW: `lstg.DiscordRPC.Initialize(app_id)` Initializes the RPC client with your own app id.
+        * NEW: `lstg.DiscordRPC.SetPresence(state, details, ...)` Sets the presence with string state and string details and optional image fields.
+        * NEW: `lstg.DiscordRPC.ClearPresence()` Clears the current RPC presence.
+        * NEW: `lstg.DiscordRPC.Shutdown()` Shutdowns the RPC client. Call it only once, in GameExit().
+        * NEW: `lstg.DiscordRPC.IsInitialize(): boolean` Returns true if the RPC client is currently initialized.
+    * Initial release specific
+        * Including a modified THlib version for compatibility with Flux.
 
 * LuaSTG-Flux v0.1.3 (pre-release)
     * API
