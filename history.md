@@ -1,5 +1,11 @@
 # LuaSTG-Flux Changelog history
 
+* LuaSTG-Flux v0.2.1
+    * API
+        * NEW: `lstg.Render3D(img, x, y, z, rotx, roty, rotz, scalex, scaley)` Renders a texture in 3d space. Helper function using Render4V under the hood.
+    * Fixes
+        * Fixed an issue with `lstg.ChangeVideoMode()` always taking the width both times instead of width and height.
+
 * LuaSTG-Flux v0.2.0 (Initial Release)
     * API
         * NEW: `lstg.CreateResourcePool(name)` Creates a resource pool for loading resource. Can be used in `lstg.SetResourceStatus()` and `lstg.RemoveResource()`.
