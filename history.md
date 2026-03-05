@@ -3,8 +3,12 @@
 * LuaSTG-Flux v0.2.1
     * API
         * NEW: `lstg.Render3D(img, x, y, z, rotx, roty, rotz, scalex, scaley)` Renders a texture in 3d space. Helper function using Render4V under the hood.
+        * NEW: Added a `name` attribute to all objects. If set in lua side (example: `self.name = "HUDRenderer"` in the init function), it will appear in tracy. This is mainly a debug feature.
     * Fixes
         * Fixed an issue with `lstg.ChangeVideoMode()` always taking the width both times instead of width and height.
+    * Changes
+        * Updated Tracy to 0.13.1
+        * Made Tracy support better (memory profiling, base and lua heap, and more zones)
 
 * LuaSTG-Flux v0.2.0 (Initial Release)
     * API
