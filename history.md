@@ -1,5 +1,15 @@
 # LuaSTG-Flux Changelog history
 
+* LuaSTG-Flux v0.2.2
+    * Fixed
+        * Fixed an issue where `lstg.Render3D` crashed when called.
+        * Fixed an issue where the the entry-point script couldn't be found in specific conditions.
+    * Changes
+        * `lstg.ObjList` can now take `world` number as argument #2 to filter object's worlds.
+        * Internal building setup changed to support Visual Studio 2026.
+        * Minimum cmake version updated to 4.0.
+        * Switched to a fork of discord-rpc (to support updated build logic).
+
 * LuaSTG-Flux v0.2.1
     * API
         * NEW: `lstg.Render3D(img, x, y, z, rotx, roty, rotz, scalex, scaley)` Renders a texture in 3d space. Helper function using Render4V under the hood.
