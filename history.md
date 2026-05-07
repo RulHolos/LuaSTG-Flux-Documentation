@@ -1,5 +1,12 @@
 # LuaSTG-Flux Changelog history
 
+* LuaSTG-Flux v0.2.3
+    * Fixed
+        * Fixed an issue where `lstg.ChangeVideoMode()` didn't scale the viewport correctly.
+        * Fixed a major memory leak related to Tracy. (Yes it was affecting you, even if you didn't know it.)
+    * Tracy
+        * Added D3D11 debug tracy zones.
+
 * LuaSTG-Flux v0.2.2
     * Fixed
         * Fixed an issue where `lstg.Render3D` crashed when called.
