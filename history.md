@@ -1,5 +1,54 @@
 # LuaSTG-Flux Changelog history
 
+* LuaSTG-Flux v0.4.0
+    * API
+        * NEW: `lstg.PartialObjFrame(group:integer[]? world:integer?)` Performs ObjFrame (v2) on a filtered list of objects. Empty tables means no filter. Do not invoke in coroutines.
+        * NEW: `lstg.PartialObjRender(group:integer[]?, layers:integer[]?, world:integer?)` Performs ObjRender on a filtered list of objects. Empty tables means no filter. Layers are pairs of ranges. Do not invoke in coroutines.
+        * NEW: `lstg.SetVideoState(name, blendmode, color)` Sets a video's state. (Similar to `lstg.SetImageState`.)
+    * API (lstg.Renderer)
+        * Added support for lights in 3d space, local to scene and to model.
+        * NEW: `lstg.Renderer.setModelAmbient(name:string, r:number, g:number, b:number, brightness:number?)` Sets the ambient color of a model resource. `brightness` is [0, 1] (very sensitive).
+        * NEW: `lstg.Renderer.setModelDirectionalLight(name:string, dx:number, dy:number, dz:number, r:number, g:number, b:number, brightness:number?)` Sets a directional light for a model resource. `brightness` is [0, 1] (very sensitive).
+        * NEW: `lstg.Renderer.addModelPointLight(name:string, x:number, y:number, z:number, r:number, g:number, b:number, brightness:number?, range:number?)` Adds a point light to a model resource. `brightness` is [0, 1] (very sensitive). `range` is the effective range of the light in world units.
+        * NEW: `lstg.Renderer.clearModelPointLights(name:string)` Clears all point lights of a model resource.
+        * NEW: `lstg.Renderer.addScenePointLight(x:number, y:number, z:number, r:number, g:number, b:number, brightness:number?, range:number?)` Adds a point light to the scene. `brightness` is [0, 1] (very sensitive). `range` is the effective range of the light in world units. Defaults to 1.0 and 10.0
+        * NEW: `lstg.Renderer.setScenePointLight(index:integer, x:number, y:number, z:number, r:number, g:number, b:number, brightness:number?, range:number?)` Sets a point light in the scene. `index` is returned by `addScenePointLight`. `brightness` is [0, 1] (very sensitive). `range` is the effective range of the light in world units. Defaults to 1.0 and 10.0
+        * NEW: `lstg.Renderer.getScenePointLightCount() : integer` Returns the current point lights in the scene. Max is 255.
+        * NEW: `lstg.Renderer.clearScenePointLights()` Clears all point lights in the scene.
+    * New Library: lstg.RichText
+        * The new Flux text renderer that doesn't suck ass. Supports rich text tags like `[b][/b]` or `[color=#000000][/color]` for example. See full doc for tag documentation.
+        * Constructors:
+        * NEW: `lstg.RichText.create(path:string, size:number) : lstg.RichText` Creates a RichText object. `path` is relative to the game path. `size` is font size from units on screen.
+        * NEW: `lstg.RichText.createFromSystem(name:string, size:number) : lstg.RichText` Creates a RichText object from a system font. `name` is the friendly name of the system font. `size` is font size from units on screen.
+        * NEW: `lstg.RichText.createFromPool(name:string, size:number) : lstg.RichText` Creates a RichText object from a loaded font resource. `name` is the name of a TTF resource. `size` is font size from units on screen.
+        * Methods:
+        * NEW: `lstg.RichText.setText(self:lstg.RichText, text:string)` Sets the text of the RichText object. Supports Rich Text tags. See documentation for supported tags.
+        * NEW: `lstg.RichText.setFillColor(self:lstg.RichText, color:lstg.Color)` Sets the fill color of the text. Will be overridden by inline color tags.
+        * NEW: `lstg.RichText.setOutline(self:lstg.RichText, size:number, color:lstg.Color)` Sets the outline color and size.
+        * NEW: `lstg.RichText.setShadow(self:lstg.RichText, offsetX:number, offsetY:number, color:lstg.Color, blur:number?)` Sets a drop shadow. `offsetX`/`offsetY` are the shadow offset in world units. `blur` is the Gaussian blur radius in pixels (default `0`).
+        * NEW: `lstg.RichText.clearShadow(self:lstg.RichText)` Removes the drop shadow.
+        * NEW: `lstg.RichText.setFontSize(self:lstg.RichText, size:number)` Changes the font size. Rebuilds the text format and layout.
+        * NEW: `lstg.RichText.setTextWrap(self:lstg.RichText, width:number)` Sets the word wrap width in world units. Put `0` to remove the limit (auto-size mode).
+        * NEW: `lstg.RichText.setMaxWidth(self:lstg.RichText, width:number)` Sets the max width of the text in world units. If the text doesn't fit, font size will shrink to fit. Put `0` to remove the limit.
+        * NEW: `lstg.RichText.setHAlign(self:lstg.RichText, align:"left"|"center"|"right")` Sets horizontal text alignment. Default is `"left"`.
+        * NEW: `lstg.RichText.setVAlign(self:lstg.RichText, align:"top"|"middle"|"bottom")` Sets vertical text alignment. Default is `"top"`.
+        * NEW: `lstg.RichText.setAlignment(self:lstg.RichText, h:"left"|"center"|"right"|nil, v:"top"|"middle"|"bottom"|nil)` Sets horizontal and vertical alignment at once. Either argument may be `nil` to leave that axis unchanged.
+        * NEW: `lstg.RichText.setUnitPerPixel(self:lstg.RichText, v:number)` Sets how many world units correspond to one texture pixel. Disables auto-scale. You usually won't need to use this.
+        * NEW: `lstg.RichText.getUnitPerPixel(self:lstg.RichText) : number` Returns the current units-per-pixel ratio.
+        * NEW: `lstg.RichText.setAutoScale(self:lstg.RichText, enable:boolean?)` When `true`, `unitPerPixel` is automatically computed each frame from the canvas/viewport ratio. Calling `setUnitPerPixel` disables this. Defaults to true.
+        * NEW: `lstg.RichText.update(self:lstg.RichText)` Updates the RichText object. Should be called each frame.
+        * NEW: `lstg.RichText.hasAnimation(self:lstg.RichText) : boolean` Returns `true` if the current text contains animated tags (e.g. `[wave]`, `[shake]`). You may want to wrap `update` inside an if statement checking this.
+        * NEW: `lstg.RichText.measure(self:lstg.RichText) : number, number` Returns the rendered text dimensions in pixels as `width, height`, before any scale is applied.
+        * NEW: `lstg.RichText.render(self:lstg.RichText, x:number, y:number, scaleX:number?, scaleY:number?, rotation:number?)` Renders the text at world position `(x, y)`. `scaleX`/`scaleY` default to `1`. `rotation` is in degrees and defaults to `0`. The pivot point follows the current alignment setting.
+        * NEW: `lstg.RichText.destroy(self:lstg.RichText)` Destroys the RichText object and frees all resources used by it. Do not use the object after calling this.
+        * NEW (op): `__len : integer` Returns the number of characters in the plain text, excluding markup tags.
+        * NEW (op): `__concat : string` Concatenates the text of two RichText objects, returning a new one.
+    * Changes
+        * Updated the executable copyright to "2025-2026"
+    * Changes
+        * Thlib-Ryannlib
+            * Updated the doc
+
 * LuaSTG-Flux v0.3.0
     * API
         * NEW: `lstg.Collect_Group(group, checking_world, tab)` Used to collect all objects in a group fast. Returns the number of objects, fills the `tab` pre-created table in-place.
