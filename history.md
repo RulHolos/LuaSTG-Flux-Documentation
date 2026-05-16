@@ -1,5 +1,10 @@
 # LuaSTG-Flux Changelog history
 
+* LuaSTG-Flux v0.4.1
+    * API:
+        * NEW: `lstg.RichText.setState(self:lstg.RichText, blendmode:string, color:lstg.Color)` Sets the render state for the text. Will be applied to all characters on top of what's already here.
+        * NEW: `lstg.RichText.setMaxHeight(self:lstg.RichText, height:number)` Sets the max height of the text in world units. If the text doesn't fit, font size will shrink to fit. Put `0` to remove the limit.
+
 * LuaSTG-Flux v0.4.0
     * API
         * NEW: `lstg.PartialObjFrame(group:integer[]? world:integer?)` Performs ObjFrame (v2) on a filtered list of objects. Empty tables means no filter. Do not invoke in coroutines.
