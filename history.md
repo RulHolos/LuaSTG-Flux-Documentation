@@ -1,5 +1,19 @@
 # LuaSTG-Flux Changelog history
 
+* LuaSTG-Flux v0.4.2
+    * API:
+        * CHANGE: `lstg.SetSEVolume(volume:number)` existed, but not `lstg.SetSEVolume(sound:string, volume:number)`. This function now exists to set the sound volume of a single sound resource instead of them all.
+        * NEW: `lstg.LoadTextureBin(name:string, binary_data:any, mipmap:boolean)` Loads a texture from formatted binary data. Must be BMP-style format.
+        * NEW: `lstg.LoadCompressedTextFile(filepath:string, packname:string?)` Loads a compressed text file into memory like a plain text file.
+    * lstg.RichText:
+        * NEW: `lstg.RichText.setFont(self:lstg.RichText, font:string, size:integer)` Changes the font of the current text. `path` is relative to the game path.
+        * NEW: `lstg.RichText.setFontFromSystem(self:lstg.RichText, font:string, size:integer)` Changes the font of the current text. `path` is the friendly name of the system font.
+        * NEW: `lstg.RichText.setFontPool(self:lstg.RichText, font:string, size:integer)` Changes the font of the current text. `path` is the name of a TTF resource.
+    * Changes
+        * Translated all resource loaders in the console/logs.
+    * Fixes
+        * Fixed scaling issues with lstg.RichText (breaking change: You will need to fix your font sizes, sorry.)
+
 * LuaSTG-Flux v0.4.1
     * API:
         * NEW: `lstg.RichText.setState(self:lstg.RichText, blendmode:string, color:lstg.Color)` Sets the render state for the text. Will be applied to all characters on top of what's already here.
