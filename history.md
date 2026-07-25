@@ -1,5 +1,12 @@
 # LuaSTG-Flux Changelog history
 
+* LuaSTG-Flux v0.4.3
+    * API:
+        * NEW: `lstg.OpenFolder(path:string)` Opens a folder to the specified path. Can be a relative path to the current working directory of a full path.
+        * NEW: `lstg.SetEntryScript(path:string)` Sets the entry script (core.lua, main.lua, ...) to a custom lua path relative to currently loaded search paths. Will override hardcoded entry script candidates if that function is used. Use this in the launch file only.
+    * Changes
+        * Added an overload to `lstg.Color` class allowing to use rgb format instead of argb using `lstg.Color(r:number, g:number, b:number)`. Alpha component will be set to 255 by default.
+
 * LuaSTG-Flux v0.4.2
     * API:
         * CHANGE: `lstg.SetSEVolume(volume:number)` existed, but not `lstg.SetSEVolume(sound:string, volume:number)`. This function now exists to set the sound volume of a single sound resource instead of them all.
