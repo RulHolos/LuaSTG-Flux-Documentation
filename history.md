@@ -1,5 +1,11 @@
 # LuaSTG-Flux Changelog history
 
+* LuaSTG-Flux v0.4.4
+    * Changes
+        * Changed the GameObject's __index function to fallback on class metatable. (Defined functions are now detected automatically.)
+            * Reflected this change on Flux's THlib. (lib/Lobject.lua)
+        * Changed the Resource Pool manager debugger (imgui) to allow selecting custom lua-created resource pools using CreateResourcePool.
+
 * LuaSTG-Flux v0.4.3
     * API:
         * NEW: `lstg.OpenFolder(path:string)` Opens a folder to the specified path. Can be a relative path to the current working directory of a full path.
