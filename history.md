@@ -1,5 +1,16 @@
 # LuaSTG-Flux Changelog history
 
+* LuaSTG-Flux v0.4.5
+    * API
+        * NEW: `lstg.GetTextureHandle(tex_name:string): integer` Returns the native texture handle. Can then be used in the new ImGui calls.
+        * NEW: `lstg.Texture2D:getNativeHandle(): integer` Returns the native texture handle of the texture object. Analog to the previous function in modern bindings.
+    * ImGui API
+        * NEW: `imgui.ImGui.Image(tex_handle:imgui.ImTextureRef, size:imgui.ImVec2, uv0:imgui.ImVec2?, uv1:imgui.ImVec2?)` Draws a texture in an ImGui context.
+        * NEW: `imgui.ImGui.ImageWithBg(tex_handle:imgui.ImTextureRef, size:imgui.ImVec2, uv0:imgui.ImVec2?, uv1:imgui.ImVec2?, bg_col:imgui.ImVec4?, tint_col:imgui.ImVec4?)` Draws a texture in an ImGui context with a background. Default color is transparent, tint is white.
+        * NEW: `imgui.ImGui.ImageButton(id:string, tex_handle:imgui.ImTextureRef, size:imgui.ImVec2, uv0:imgui.ImVec2?, uv1:imgui.ImVec2?, bg_col:imgui.ImVec4?, tint_col:imgui.ImVec4?): boolean` Draws a button with a texture as its content. Returns true if clicked.
+    * Fixes
+        * Fixed wrong pool name on loading resource in a custom resource pool context.
+
 * LuaSTG-Flux v0.4.4
     * Changes
         * Changed the GameObject's __index function to fallback on class metatable. (Defined functions are now detected automatically.)
