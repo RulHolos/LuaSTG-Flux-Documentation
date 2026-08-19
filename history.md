@@ -1,5 +1,14 @@
 # LuaSTG-Flux Changelog history
 
+* LuaSTG-Flux v0.4.6
+    * Fixes
+        * Fixed an alignment bug with RichText when setting the text alignment to "middle" and having newlines in the text and not setting a text wrap. The new-line'd text now aligns correctly.
+    * Changes
+        * Updated Tracy from 0.13.1 to 0.14, [download the new 0.14 profiler here](https://github.com/wolfpld/tracy/releases/download/v0.14.0/windows-0.14.0.zip).
+        * Updated d3dcompiler to 10.0.28000.2526.
+        * Updated most internal dependencies.
+        * Added `file_system/entry_point` field in the config.json file to override the entry script path. Same idea as the newly introduced `lstg.SetEntryScript` in 0.4.3. 
+
 * LuaSTG-Flux v0.4.5
     * API
         * NEW: `lstg.GetTextureHandle(tex_name:string): integer` Returns the native texture handle. Can then be used in the new ImGui calls.
