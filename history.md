@@ -1,5 +1,28 @@
 # LuaSTG-Flux Changelog history
 
+* LuaSTG-Flux v0.5.0
+    * 3D features
+        * Smooth 3D alpha and blendmodes supports. Added "screendoor" blendmode for 3d.
+        * API: `lstg.SetModelState(model_name:string, blendmode:string, color:lstg.Color)`
+        * Dynamic texture and rendertarget swap. Allows overriding submeshes textures with texture/image/rt resources
+        * API: `lstg.SetModelTexture(model_name:string, tex_name:string, submesh:string?)`
+        * API: `lstg.ResetModelTexture(model_name:string, submesh:string?)`
+        * UV transformation. Added shader constant `cbuffer uvTransform`. All done on GPU.
+        * API: `lstg.SetModelUV(model_name:string, u:number, v:number, scale_u:number?, scale_v:number?, angle:number?, submesh:string?)`
+        * API: `lstg.ResetModelUV(model_name:string, submesh:string?)`
+        * Submesh inspection and metadata. Preserves gltf node, mesh and material names.
+        * API: `lstg.GetModelSubmeshCount(model_name:string):number`
+        * API: `lstg.GetModelSubmeshList(model_name:string):array{ index, node, mesh, material }`
+        * Sub-mesh coloring. VERTEX YAY! Set individual submesh colors and transparency.
+        * API: `lstg.SetModelSubmeshColor(model_name:string, color:lstg.Color, submesh:string?)`
+        * API: `lstg.ResetModelSubmeshColor(model_name:string, submesh:string?)`
+        * Sampling state. Set filtering and wrapping modes.
+        * API: `lstg.SetModelSampler(model_name:string, sampler:"point"|"linear"|"aniso"|"wrap"|"clamp"|"mirror"|"point+wrap"|"linear+clamp"|..., submesh:string?)`
+        * API: `lstg.ResetModelSampler(model_name:string, submesh:string?)`
+        * Submesh visibility. Turns on or off a submesh visibility.
+        * API: `lstg.SetModelSubmeshVisible(model_name:string, visible:boolean, submesh:string?)`
+        * API: `lstg.GetModelSubmeshVisible(model_name:string, submesh_index:integer)`
+
 * LuaSTG-Flux v0.4.6
     * Fixes
         * Fixed an alignment bug with RichText when setting the text alignment to "middle" and having newlines in the text and not setting a text wrap. The new-line'd text now aligns correctly.
