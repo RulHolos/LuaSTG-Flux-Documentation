@@ -1,10 +1,16 @@
 # LuaSTG-Flux Changelog history
 
 * LuaSTG-Flux v0.5.0
+    * API
+        * ImGui ImDrawList support and other drawing functions.
+        * NEW: `lstg.GetMemoryUsage()` Gets current memory usage with different fields.
+        * NEW: `lstg.GetGameObjectStats()` Gets object alloc, free, active and collisions stats.
+        * NEW: `lstg.GetGPUStats()` Gets current GPU usage data.
+        * NEW: `lstg.SaveFileDialog(title:string, saveButtonLabel:string, fileNameLabel:string)`
     * 3D features
         * Smooth 3D alpha and blendmodes supports. Added "screendoor" blendmode for 3d.
         * API: `lstg.SetModelState(model_name:string, blendmode:string, color:lstg.Color)`
-        * Dynamic texture and rendertarget swap. Allows overriding submeshes textures with texture/image/rt resources
+        * Dynamic texture and rendertarget swap. Allows overriding submeshes textures with texture/image/rt resources.
         * API: `lstg.SetModelTexture(model_name:string, tex_name:string, submesh:string?)`
         * API: `lstg.ResetModelTexture(model_name:string, submesh:string?)`
         * UV transformation. Added shader constant `cbuffer uvTransform`. All done on GPU.
@@ -13,7 +19,7 @@
         * Submesh inspection and metadata. Preserves gltf node, mesh and material names.
         * API: `lstg.GetModelSubmeshCount(model_name:string):number`
         * API: `lstg.GetModelSubmeshList(model_name:string):array{ index, node, mesh, material }`
-        * Sub-mesh coloring. VERTEX YAY! Set individual submesh colors and transparency.
+        * Sub-mesh coloring (fucking finally). Set individual submesh colors and transparency.
         * API: `lstg.SetModelSubmeshColor(model_name:string, color:lstg.Color, submesh:string?)`
         * API: `lstg.ResetModelSubmeshColor(model_name:string, submesh:string?)`
         * Sampling state. Set filtering and wrapping modes.
@@ -22,6 +28,10 @@
         * Submesh visibility. Turns on or off a submesh visibility.
         * API: `lstg.SetModelSubmeshVisible(model_name:string, visible:boolean, submesh:string?)`
         * API: `lstg.GetModelSubmeshVisible(model_name:string, submesh_index:integer)`
+    * Fixes
+        * Reduced major RichText lag issues.
+        * Fixed a RichText cache retention issue caused by a regression in last update.
+        * Fixed ImGui.InputText not resizing buffers correctly.
 
 * LuaSTG-Flux v0.4.6
     * Fixes
