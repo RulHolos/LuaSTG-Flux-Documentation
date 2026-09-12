@@ -1,12 +1,40 @@
 # LuaSTG-Flux Changelog history
 
 * LuaSTG-Flux v0.5.0
+    * External:
+        * If you have the lua language extension in your IDE (Mainly vscode), you can now download the "LuaSTG-Flux" addon. (Give it a bit of time, it's not entirely finished yet)
+        * This addon has **every single** api calls documented in their respective subclass. Allows checking for "require"s too.
+        * This addon will be updated everytime I release a new engine version that introduces or changes API calls.
+        * Note: This addon documents engine defined api calls. As such, it does **not** contain the steam api documentation (yet) or luasocket.
     * API
         * ImGui ImDrawList support and other drawing functions.
         * NEW: `lstg.GetMemoryUsage()` Gets current memory usage with different fields.
         * NEW: `lstg.GetGameObjectStats()` Gets object alloc, free, active and collisions stats.
         * NEW: `lstg.GetGPUStats()` Gets current GPU usage data.
         * NEW: `lstg.SaveFileDialog(title:string, saveButtonLabel:string, fileNameLabel:string)`
+    * New Type: Matrix
+        * You can import the matrix type module with `local matrix = require("lstg.Matrix")`
+        * NEW: `matrix.create(rows:integer, columns:integer, ...:number): lstg.Matrix` Creates a matrix and returns it. Number of arguments should be equals to rows * columns + 2.
+        * NEW: `matrix.identity(size:integer): lstg.Matrix` Creates an identity matrix of the given size and returns it.
+        * NEW: `matrix:get(row:integer, column:integer): number` Gets the value at the specified row and column of the matrix.
+        * NEW: `matrix:set(row:integer, column:integer, value:number): self` Sets the value at the specified row and column of the matrix.
+        * NEW: `matrix:transpose(): self` Transposes itself.
+        * NEW: `matrix:inverse(): self` Tries to inverse itself.
+        * You can call the following operators between two matrixes for math operation: `+`: Addition, `-`: Substraction, `*`: Multiplication (can be with another matrix or a scalar), `==`: Equality check.
+    * Reworked sqlite support (out of WIP status).
+        * You can import the sqlite3 library with `local sqlite = require("sqlite")`
+        * NEW: `sqlite.Database.open(file_name:string, flags:integer): db:lstg.sqlite.Database?, err:string?, code:integer?` Opens or create a database file.
+        * NEW: `sqlite.Database:exec(query:string, callback:lstg.sqlite.ExecCallback)` Executes one or more SQL statements on the database. Takes a callback argument of type `lstg.sqlite.ExecCallback` which is a function callback with this signature: `fun(columnCount:integer, columnValues:string[], columnNames:string[]): integer`. Callback invoked once per result row when `exec` is given one. Returns sqlite.OK to continue, any other value aborts the query.
+        * NEW: `sqlite.Database:close(): ok:boolean, err:string?, code:integer?` Closes the database connection and handle.
+        * In the `sqlite` scope, there is the equivalent of the most used sqlite constants such as `OK`, `BUSY`, `LOCKED`, `OPEN_READONLY`, `OPEN_CREATE`, etc...
+    * Reworked `lstg.FileSystemWatcher`. Faster with better API. Legacy API kept as is.
+        * NEW: `lstg.FileSystemWatcher.create(path, {recursive:boolean, filter:integer})` Creates a FileSystemWatcher instance with optional recursive and filter flags. Filter is a bitmask from `lstg.FileSystemWatcher.NotifyFilter`.
+        * NEW: `lstg.FileSystemWatcher:poll()` Pops every pending changes at once as an array of tables.
+        * NEW: `lstg.FileSystemWatcher:changes()` Returns an iterator you can use in generic for loops (`for file_name, action, old_file_name in watcher:changes() do ... end`)
+        * NEW: `lstg.FileSystemWatcher:getPath()` Returns the path this FSW is tied to.
+        * NEW: `lstg.FileSystemWatcher:isValid()` Returns true of false depending on if the file can be read/is valid.
+        * Renamed files now report `old_file_name` on the `renamed_new_name` event.
+        * Note: The legacy API still works correctly, but is slower and bulkier to use.
     * 3D features
         * Smooth 3D alpha and blendmodes supports. Added "screendoor" blendmode for 3d.
         * API: `lstg.SetModelState(model_name:string, blendmode:string, color:lstg.Color)`
@@ -32,6 +60,11 @@
         * Reduced major RichText lag issues.
         * Fixed a RichText cache retention issue caused by a regression in last update.
         * Fixed ImGui.InputText not resizing buffers correctly.
+        * RichText won't make linux run at 1fps now.
+        * Fixed sqlite not working at all???
+        * The lstg.Sprite module is more stable now.
+    * Notes
+        * Due to the 3D updates, some backgrounds made with blenders using the gltf exporter won't work as they did before. [It is a genuine blender bug.](https://blenderartists.org/t/bug-blender-4-3-ignores-render-method-dithered-when-exporting-to-gltf/1564015/3)
 
 * LuaSTG-Flux v0.4.6
     * Fixes
